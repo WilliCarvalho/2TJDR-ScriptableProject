@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private ShopManager shopManager;
+    [SerializeField] private PlayerInventory playerInventory;
+
+    public static event Action<Item> HandleItemSelled;
+
+    private void Awake()
     {
-        
+        shopManager.OnItemSelled += OnItemSelledHandler;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnItemSelledHandler(Item item)
     {
-        
+        HandleItemSelled?.Invoke(item);
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d06bb809f6e844ea0950fc558d9e16, type: 3}
   m_Name: Item-Weapon
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 2444500385317048977, guid: e67692380744343468e8444208e0857a, type: 3}
   itemImage: {fileID: 21300000, guid: da3944b1a7fbca740b934312a9827421, type: 3}
   itemPrice: 60
   itemName: Mega blaster knife

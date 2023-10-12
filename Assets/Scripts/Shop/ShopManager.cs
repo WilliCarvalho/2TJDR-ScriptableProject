@@ -6,10 +6,10 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private Inventory shopInventory;
-    [SerializeField] private ShopItem displayPrefab;
+    [SerializeField] private ShopItemDisplay displayPrefab;
     [SerializeField] private Transform shopContainer;
 
-    public static event Action<Item> OnItemSelled;
+    public event Action<Item> OnItemSelled;
 
     private void Awake()
     {
@@ -20,7 +20,7 @@ public class ShopManager : MonoBehaviour
     {
         foreach(Item item in shopInventory.items)
         {
-            ShopItem shopItem = Instantiate(displayPrefab, shopContainer);
+            ShopItemDisplay shopItem = Instantiate(displayPrefab, shopContainer);
             shopItem.PopulateDisplay(item);
             shopItem.OnSellItem += HandleItemSelled;
         }
@@ -28,6 +28,8 @@ public class ShopManager : MonoBehaviour
 
     private void HandleItemSelled(Item item)
     {
+        if (item.itemState != EItemState.ToBuy) return;
+        shopInventory.items.Remove(item);
         OnItemSelled?.Invoke(item);
     }
 }
